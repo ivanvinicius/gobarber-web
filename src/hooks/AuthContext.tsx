@@ -15,6 +15,7 @@ interface IUserData {
 interface IAuthContext {
   user: object;
   signIn(userData: IUserData): Promise<void>;
+  signOut(): void;
 }
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -42,8 +43,15 @@ const AuthProvider: React.FC = ({ children }) => {
     setData({ token, user });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@GoBaber:token');
+    localStorage.removeItem('@GoBaber:user');
+
+    setData({} as IAuthState);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
