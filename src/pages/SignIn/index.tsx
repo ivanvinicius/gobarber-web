@@ -4,7 +4,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import AuthContext from '../../hooks/AuthContext';
+import { AuthContext } from '../../hooks/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -19,15 +19,12 @@ interface ISignInFormaData {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const auth = useContext(AuthContext);
-
-  console.log(auth);
+  const { signIn } = useContext(AuthContext);
 
   const handleSubmit = useCallback(
     async ({ email, password }: ISignInFormaData) => {
       try {
         formRef.current?.setErrors({});
-
         const schema = Yup.object().shape({
           email: Yup.string()
             .email('E-mail precisa ser válido')
@@ -36,13 +33,15 @@ const SignIn: React.FC = () => {
         });
 
         await schema.validate({ email, password }, { abortEarly: false });
+
+        signIn({ email, password });
       } catch (err) {
         const formattedErrors = getValidationErrors(err);
 
         formRef.current?.setErrors(formattedErrors);
       }
     },
-    [],
+    [signIn],
   );
 
   return (
