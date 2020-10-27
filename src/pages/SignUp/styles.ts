@@ -1,12 +1,25 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import signUpBackground from '../../assets/sign-up-background.png';
+
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+`;
 
 export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: stretch;
+  overflow: hidden;
 `;
 
 export const Content = styled.div`
@@ -17,6 +30,15 @@ export const Content = styled.div`
 
   width: 100%;
   max-width: 700px;
+`;
+
+export const AnimationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  animation: ${appearFromRight} 1.5s;
 
   form {
     margin: 80px;

@@ -1,12 +1,24 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import signInBackground from '../../assets/sign-in-background.png';
+
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: stretch;
+  overflow: hidden;
 `;
 
 export const Content = styled.div`
@@ -17,6 +29,15 @@ export const Content = styled.div`
 
   width: 100%;
   max-width: 700px;
+`;
+
+export const AnimationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  animation: ${appearFromLeft} 1.5s;
 
   form {
     margin: 80px;
