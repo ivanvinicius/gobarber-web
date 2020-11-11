@@ -2,9 +2,16 @@ import React, { createContext, useCallback, useContext, useState } from 'react';
 
 import api from '../services/api';
 
+interface IUserProps {
+  id: string;
+  email: string;
+  name: string;
+  avatar_url: string;
+}
+
 interface IAuthState {
   token: string;
-  user: object;
+  user: IUserProps;
 }
 
 interface IUserData {
@@ -13,7 +20,7 @@ interface IUserData {
 }
 
 interface IAuthContext {
-  user: object;
+  user: IUserProps;
   signIn(userData: IUserData): Promise<void>;
   signOut(): void;
 }

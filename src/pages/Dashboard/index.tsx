@@ -1,7 +1,13 @@
 import React from 'react';
 
+import Header from '../../components/Header';
+
 const Dashboard: React.FC = () => {
-  return <h1>dashboard</h1>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default Dashboard;
