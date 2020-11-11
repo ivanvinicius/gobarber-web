@@ -2,12 +2,17 @@ import React, { ButtonHTMLAttributes } from 'react';
 
 import { Container } from './styles';
 
-type IButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  loading?: {
+    state: boolean;
+    description: string;
+  };
+}
 
-const Button: React.FC<IButtonProps> = ({ children, ...rest }) => {
+const Button: React.FC<IButtonProps> = ({ children, loading, ...rest }) => {
   return (
     <Container type="button" {...rest}>
-      {children}
+      {loading?.state ? loading.description : children}
     </Container>
   );
 };
