@@ -95,7 +95,7 @@ export const NextAppointment = styled.div`
 export const Section = styled.section`
   margin-top: 48px;
 
-  strong {
+  > strong {
     color: #999591;
     font-size: 20px;
     line-height: 26px;
@@ -119,6 +119,7 @@ export const Appointment = styled.div`
     display: flex;
     align-items: center;
     color: #f4ede8;
+    width: 70px;
 
     svg {
       color: #ff9000;
@@ -128,12 +129,13 @@ export const Appointment = styled.div`
 
   div {
     flex: 1;
-    background-color: #3e3b47;
     display: flex;
     align-items: center;
+    background-color: #3e3b47;
     padding: 16px 24px;
     border-radius: 10px;
     margin-left: 24px;
+    height: 90px;
 
     img {
       width: 56px;
@@ -142,6 +144,7 @@ export const Appointment = styled.div`
     }
 
     strong {
+      flex: 1;
       margin-left: 24px;
       color: #fff;
       font-size: 20px;
