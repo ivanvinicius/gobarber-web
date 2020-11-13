@@ -16,7 +16,7 @@ import { Container, Content, AnimationContainer, Background } from './styles';
 
 interface IResetPasswordFormaData {
   password: string;
-  passwordConfirmation: string;
+  password_confirmation: string;
 }
 
 const ResetPassword: React.FC = () => {
@@ -26,7 +26,7 @@ const ResetPassword: React.FC = () => {
   const location = useLocation();
 
   const handleSubmit = useCallback(
-    async ({ password, passwordConfirmation }: IResetPasswordFormaData) => {
+    async ({ password, password_confirmation }: IResetPasswordFormaData) => {
       try {
         formRef.current?.setErrors({});
 
@@ -34,14 +34,14 @@ const ResetPassword: React.FC = () => {
           password: Yup.string()
             .required('Senha obrigatória.')
             .min(6, 'Senha deve conter pelo menos 6 caracteres'),
-          passwordConfirmation: Yup.string().oneOf(
+          password_confirmation: Yup.string().oneOf(
             [Yup.ref('password'), 'null'],
             'As senhas devem ser iguais.',
           ),
         });
 
         await schema.validate(
-          { password, passwordConfirmation },
+          { password, password_confirmation },
           { abortEarly: false },
         );
 
@@ -53,7 +53,7 @@ const ResetPassword: React.FC = () => {
 
         await api.post('/password/reset', {
           password,
-          password_confirmation: passwordConfirmation,
+          password_confirmation,
           token,
         });
 
@@ -93,7 +93,7 @@ const ResetPassword: React.FC = () => {
               placeholder="Nova Senha"
             />
             <Input
-              name="passwordConfirmation"
+              name="password_confirmation"
               icon={FiLock}
               type="password"
               placeholder="Confirmar Senha"

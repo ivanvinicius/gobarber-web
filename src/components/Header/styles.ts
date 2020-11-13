@@ -16,6 +16,11 @@ export const HeaderContent = styled.div`
   a {
     > img {
       width: 100px;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -23,6 +28,11 @@ export const HeaderContent = styled.div`
     margin-left: auto;
     background-color: transparent;
     border: 0;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
 
     svg {
       width: 20px;
@@ -53,8 +63,14 @@ export const Profile = styled.div`
       color: #f4ede8;
     }
 
-    strong {
+    a {
+      text-decoration: none;
       color: #ff9000;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 `;
